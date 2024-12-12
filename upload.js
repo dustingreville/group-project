@@ -1,31 +1,38 @@
-document.getElementById('uploadForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the form from submitting and refreshing the page
+// Handle form submission
+document.getElementById("uploadForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the default form submission
 
-    // Get the values from the input fields
-    var title = document.getElementById('title').value;
-    var artist = document.getElementById('artist').value;
-    var genre = document.getElementById('genre').value;
-    var fileInput = document.getElementById('audioFile');
-    var file = fileInput.files[0];
+    // Get song details
+    const title = document.getElementById("title").value;
+    const artist = document.getElementById("artist").value;
+    const genre = document.getElementById("genre").value;
+    const audioFile = document.getElementById("audioFile").files[0];
 
-    // Check if a file is selected
-    if (file) {
-        // Create a URL for the file
-        var audioURL = URL.createObjectURL(file);
+    // Create an object to hold the song details
+    const song = {
+        title: title,
+        artist: artist,
+        genre: genre,
+        duration: "", // We can add duration later if needed
+        file: URL.createObjectURL(audioFile), // Create a URL to access the audio file
+    };
 
-        // Update the source of the audio element to the file URL
-        var audioElement = document.getElementById('audioElement');
-        var audioSource = document.getElementById('audioSource');
-        audioSource.src = audioURL;
+    // Get existing songs from localStorage or initialize an empty array
+    let songs = JSON.parse(localStorage.getItem("songs")) || [];
 
-        // Show the audio player and play the audio
-        document.getElementById('audioPlayer').style.display = 'block';
-        audioElement.load(); // Load the audio
-        audioElement.play(); // Play the audio
+    // Add the new song to the array
+    songs.push(song);
 
-        // Optionally display the track details (e.g., title, artist, genre)
-        alert('Track Details:\nTitle: ' + title + '\nArtist: ' + artist + '\nGenre: ' + genre);
-    } else {
-        alert('Please select an audio file to upload.');
-    }
+    // Save the updated song list to localStorage
+    localStorage.setItem("songs", JSON.stringify(songs));
+
+    // Clear the form
+    document.getElementById("uploadForm").reset();
+
+    // Optionally show an audio player to preview the song
+    const audioPlayer = document.getElementById("audioPlayer");
+    const audioElement = document.getElementById("audioElement");
+    audioElement.src = song.file;
+    audioPlayer.style.display = "block";
 });
+
