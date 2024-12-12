@@ -1,6 +1,6 @@
 // Load songs from local storage
 const loadSongs = () => {
-    const songList = JSON.parse(localStorage.getItem("songs"));
+    const songList = JSON.parse(localStorage.getItem("songs")) || []; // Handle case where no songs are saved
     const songContainer = document.getElementById("songList");
     songContainer.innerHTML = ""; // Clear any previous content
 
@@ -21,7 +21,7 @@ const loadSongs = () => {
 // Filter songs based on search query
 const searchSongs = () => {
     const query = document.getElementById("searchInput").value.toLowerCase();
-    const songList = JSON.parse(localStorage.getItem("songs"));
+    const songList = JSON.parse(localStorage.getItem("songs")) || [];
     const filteredSongs = songList.filter(song => {
         return song.title.toLowerCase().includes(query) ||
             song.artist.toLowerCase().includes(query) ||
