@@ -8,15 +8,20 @@ body {
 
 /* Header Section */
 header {
-    background-color: #2c3e50;
+    background-color: #1a1a2e;  /* Updated to match the header color */
     padding: 20px 0;
     color: white;
+    border-bottom: 3px solid #e94560;  /* Add a border to match other headers */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);  /* Add shadow for consistency */
 }
 
 header h1 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 0;
+    color: #e94560;  /* Match text color */
+    font-family: 'Chewy', cursive;  /* Use consistent font */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);  /* Add text shadow */
 }
 
 header nav {
@@ -30,10 +35,16 @@ header nav a {
     text-decoration: none;
     margin: 0 15px;
     font-size: 1.2rem;
+    padding: 10px 15px;  /* Match padding for a consistent look */
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;  /* Smooth hover transition */
 }
 
 header nav a:hover {
-    color: #3498db;
+    background-color: #e94560;  /* Hover effect to match other pages */
+    color: white;
+    border-color: #e94560;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);  /* Add shadow on hover */
 }
 
 /* Feed Section */
@@ -96,4 +107,3 @@ header nav a:hover {
 .track-item button:hover {
     background-color: #2980b9;
 }
-
