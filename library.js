@@ -49,6 +49,13 @@ const searchSongs = () => {
 const playSong = (songFile) => {
     const audio = new Audio(songFile);
     audio.play();
+
+    // Optionally, you could show the song playing status or update the UI for feedback.
+    const audioPlayerContainer = document.getElementById("audioPlayer");
+    audioPlayerContainer.style.display = 'block'; // Show the audio player container
+    const audioElement = document.getElementById("audioElement");
+    audioElement.src = songFile;  // Set the source of the audio player to the selected song
+    audioElement.play();
 };
 
 // Event listener for search input
