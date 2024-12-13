@@ -23,37 +23,17 @@ const loadLatestTrack = () => {
         <p>Artist: ${latestSong.artist}</p>
         <p>Genre: ${latestSong.genre}</p>
         <p>Duration: ${latestSong.duration}</p>
-        <button class="btn btn-primary" onclick="playTrack('${latestSong.file}')">Play</button>
+        <button class="btn btn-primary" onclick="playSong('${latestSong.file}')">Play</button>
     `;
 
     trackContainer.appendChild(trackItem);
-
-    // If the latest song is a video, show it in the video player
-    if (latestSong.file.endsWith('.mp4')) {
-        const videoPlayer = document.getElementById("latestVideo");
-        const videoSource = document.getElementById("videoSource");
-        videoSource.src = latestSong.file; // Update source of the video player
-        videoPlayer.load(); // Reload the video player to reflect the new source
-        videoPlayer.play(); // Auto-play the latest video
-    }
 };
 
-// Function to play the selected track (audio or video)
-const playTrack = (trackFile) => {
-    if (trackFile.endsWith('.mp4')) {
-        // Play the video if it's a video file
-        const videoPlayer = document.getElementById("latestVideo");
-        const videoSource = document.getElementById("videoSource");
-        videoSource.src = trackFile;
-        videoPlayer.load();
-        videoPlayer.play();
-    } else {
-        // Play the audio if it's an audio file
-        const audio = new Audio(trackFile);
-        audio.play();
-    }
+// Function to play the selected song (audio player functionality)
+const playSong = (songFile) => {
+    const audio = new Audio(songFile);
+    audio.play();
 };
 
 // Call loadLatestTrack on page load to display the latest track
-window.onload = loadLatestTrack;
-
+loadLatestTrack();
