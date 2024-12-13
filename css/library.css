@@ -1,0 +1,121 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Styling for the Header Section */
+header {
+    background-color: #1a1a2e;
+    color: #fff;
+    padding: 20px 0;
+    border-bottom: 3px solid #e94560;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Container inside the header */
+header .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Main heading */
+header h1 {
+    font-family: 'Chewy', cursive;
+    font-size: 2.5rem;
+    margin: 0;
+    color: #e94560;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Navigation styling */
+header nav {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+header nav a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #f0f0f0;
+    padding: 10px 15px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+header nav a:hover {
+    background-color: #e94560;
+    color: #fff;
+    border-color: #e94560;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Library section */
+#library {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Search input */
+#searchInput {
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+}
+
+/* Song item */
+.song-item {
+    background-color: #fff;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.song-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.song-item p {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.song-item button {
+    background-color: #e94560;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.song-item button:hover {
+    background-color: #d84f5b;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    header nav a {
+        font-size: 0.9rem;
+        padding: 8px 10px;
+    }
+}
