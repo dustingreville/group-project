@@ -173,15 +173,9 @@ header nav a:hover {
 
     header nav {
         flex-direction: column;
-        gap: 10px;
     }
 
-    header nav a {
-        font-size: 0.9rem;
-        padding: 8px 10px;
-    }
-
-    #playlistList .playlist-item {
-        flex: 1 1 calc(100% - 20px);
+    #playlistList {
+        flex-direction: column;
     }
 }
