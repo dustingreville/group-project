@@ -1,8 +1,71 @@
-<!-- Playlist Builder -->
-<section id="playlist-builder">
-    <h2>Your Playlist</h2>
-    <div id="playlist">
-        <!-- Playlist will be populated dynamically -->
-    </div>
-    <button id="save-playlist">Save Playlist</button>
-</section>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Beats - Playlist Builder</title>
+    <link rel="stylesheet" href="css/playlist.css"> <!-- Link to playlist CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="bg-dark text-white p-3">
+        <div class="container">
+            <h1 class="text-center">Virtual Beats</h1>
+            <nav class="d-flex justify-content-center">
+                <!-- Navigation Links -->
+                <a href="index.html" class="text-white mx-3">Home</a>
+                <a href="registration.html" class="text-white mx-3">Register</a>
+                <a href="upload.html" class="text-white mx-3">Upload</a>
+                <a href="feed.html" class="text-white mx-3">Feed</a>
+                <a href="library.html" class="text-white mx-3">Library</a>
+                <a href="playlist.html" class="text-white mx-3">Playlist</a>
+                <a href="dashboard.html" class="text-white mx-3">Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Playlist Builder Section -->
+    <section id="playlist-builder" class="container mt-5">
+        <h2>Your Playlist</h2>
+
+        <!-- Song Search and Playlist Management -->
+        <section id="search-songs">
+            <h3>Search for Songs</h3>
+            <div id="search-bar" class="mb-3">
+                <input type="text" id="search-input" placeholder="Search for songs..." class="form-control w-50">
+                <button id="search-button" class="btn btn-primary mt-2">Search</button>
+            </div>
+
+            <div id="song-results" class="d-flex flex-wrap gap-3">
+                <!-- Song results will be dynamically populated here -->
+            </div>
+        </section>
+
+        <!-- Playlist Modal -->
+        <div id="playlist-modal" class="modal">
+            <div class="modal-content">
+                <span id="close-modal" class="close">&times;</span>
+                <h3>Select Playlist</h3>
+                <select id="playlist-selector" class="form-select">
+                    <!-- Playlist options will be populated here -->
+                </select>
+                <button id="add-to-playlist" class="btn btn-success mt-3">Add to Playlist</button>
+            </div>
+        </div>
+
+        <div id="playlist" class="mb-4">
+            <!-- Playlist save -->
+        </div>
+
+        <button id="save-playlist" class="btn btn-primary w-100">Save Playlist</button>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="playlist.js"></script> <!-- Link to playlist.js -->
+
+</body>
+
+</html>
