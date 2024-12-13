@@ -165,6 +165,52 @@ header nav a:hover {
     background-color: #d84f5b;
 }
 
+
+/* Style for the Create Playlist button */
+#createPlaylist {
+    background-color: #e94560; 
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#createPlaylist:hover {
+    background-color: #d84f5b; 
+}
+
+/* Styling for the search bar */
+#searchInput {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+}
+
+/* Styling for the song list when displayed */
+#songList .song-item h3 {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* Styling for the audio player */
+#audioPlayer {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#audioPlayer h3 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     header h1 {
@@ -173,9 +219,25 @@ header nav a:hover {
 
     header nav {
         flex-direction: column;
+        gap: 10px;
     }
 
-    #playlistList {
+    header nav a {
+        font-size: 0.9rem;
+        padding: 8px 10px;
+    }
+
+    #playlistList .playlist-item {
+        flex: 1 1 calc(100% - 20px);
+    }
+
+    .song-item {
         flex-direction: column;
+        text-align: left;
+    }
+
+    .song-item button {
+        width: 100%;
+        margin-top: 5px;
     }
 }
