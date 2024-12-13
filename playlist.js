@@ -46,7 +46,7 @@ const loadPlaylists = () => {
     const playlistSongs = document.getElementById("playlistSongs");
     playlistSongs.innerHTML = "";  // Clear current songs
 
-    // Load songs from selected playlist
+    // Load songs from selected playlist!
     playlistSelector.addEventListener('change', () => {
         const selectedPlaylist = playlistSelector.value;
         if (selectedPlaylist) {
