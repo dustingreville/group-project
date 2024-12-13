@@ -42,6 +42,29 @@ const loadPlaylists = () => {
         option.textContent = playlist;
         playlistSelector.appendChild(option);
     });
+    
+    const playlistSongs = document.getElementById("playlistSongs");
+    playlistSongs.innerHTML = "";  // Clear current songs
+
+    // Load songs from selected playlist
+    playlistSelector.addEventListener('change', () => {
+        const selectedPlaylist = playlistSelector.value;
+        if (selectedPlaylist) {
+            const playlist = playlists[selectedPlaylist];
+            playlistSongs.innerHTML = "";  // Clear previous songs
+            playlist.forEach(song => {
+                const songItem = document.createElement("div");
+                songItem.classList.add("col-md-4", "song-item");
+                songItem.innerHTML = `
+                    <h3>${song.title}</h3>
+                    <p>Artist: ${song.artist}</p>
+                    <p>Genre: ${song.genre}</p>
+                    <button onclick="playSong('${song.file}')">Play</button>
+                `;
+                playlistSongs.appendChild(songItem);
+            });
+        }
+    });
 };
 
 const addToPlaylist = (songIndex) => {
@@ -100,3 +123,4 @@ document.getElementById("searchInput").addEventListener("input", searchSongs);
 
 loadSongs();
 loadPlaylists();
+
