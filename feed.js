@@ -1,39 +1,47 @@
-// Function to load and display the latest track from localStorage
-const loadLatestTrack = () => {
-    const trackList = JSON.parse(localStorage.getItem("songs")) || [];
-    
-    // Get the latest song (the last item in the array)
-    const latestSong = trackList[trackList.length - 1];
+// Function to display the songs from localStorage
+const displaySongs = () => {
+    const songListContainer = document.getElementById("songList");
 
-    // If there are no songs, return early
-    if (!latestSong) {
-        document.getElementById("trackList").innerHTML = "<p>No songs uploaded yet.</p>";
+    // Fetch the list of songs from localStorage
+    const songs = JSON.parse(localStorage.getItem("songs")) || [];
+
+    // Clear any existing content
+    songListContainer.innerHTML = "";
+
+    // If no songs are found, show a message
+    if (songs.length === 0) {
+        songListContainer.innerHTML = "<p>No songs uploaded yet.</p>";
         return;
     }
 
-    const trackContainer = document.getElementById("trackList");
-    trackContainer.innerHTML = ""; // Clear any existing content
+    // Loop through the songs and create a song item for each
+    songs.forEach(song => {
+        const songItem = document.createElement("div");
+        songItem.classList.add("col-md-4", "mb-4");
 
-    // Create a track item for the latest song
-    const trackItem = document.createElement("div");
-    trackItem.classList.add("track-item", "border", "p-3", "mb-3");
+        // Structure for each song in the feed
+        songItem.innerHTML = `
+            <div class="card">
+                
+                <div class="card-body">
+                    <h5 class="card-title">${song.title}</h5>
+                    <p class="card-text">Artist: ${song.artist}</p>
+                    <p class="card-text">Genre: ${song.genre}</p>
+                    <button class="btn btn-primary" onclick="playSong('${song.file}')">Play</button>
+                </div>
+            </div>
+        `;
 
-    trackItem.innerHTML = `
-        <h3>${latestSong.title}</h3>
-        <p>Artist: ${latestSong.artist}</p>
-        <p>Genre: ${latestSong.genre}</p>
-        <p>Duration: ${latestSong.duration}</p>
-        <button class="btn btn-primary" onclick="playSong('${latestSong.file}')">Play</button>
-    `;
-
-    trackContainer.appendChild(trackItem);
+        // Append the song item to the song list container
+        songListContainer.appendChild(songItem);
+    });
 };
 
-// Function to play the selected song (audio player functionality)
+// Function to play the song when the Play button is clicked
 const playSong = (songFile) => {
     const audio = new Audio(songFile);
     audio.play();
 };
 
-// Call loadLatestTrack on page load to display the latest track
-loadLatestTrack();
+// Call displaySongs when the page loads
+document.addEventListener("DOMContentLoaded", displaySongs);
