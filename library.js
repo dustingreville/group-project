@@ -45,7 +45,7 @@ const searchSongs = () => {
     });
 };
 
-// Play the selected song (audio player functionality)
+// Play the selected song (audio player functionality.)
 const playSong = (songFile) => {
     const audio = new Audio(songFile);
     audio.play();
