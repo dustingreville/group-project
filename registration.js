@@ -7,5 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Form submitted');
         event.preventDefault();
         alert(`You are registered! Username: ${userName.value}, Email: ${email.value}`);
+        form.reset();
     });
 });

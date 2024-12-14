@@ -26,3 +26,5 @@ The Registration Page allows new users to sign up for an account on the platform
 
 The rest like the homepage, feed etc are pretty unfinished or just basic. The homepage is just a hello welcome. Since its not the group making the entire thing together a lot isnt as finsihed as it should be or could be.
 
+
+
