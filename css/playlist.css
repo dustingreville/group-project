@@ -1,3 +1,4 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -12,8 +13,9 @@ h1, h2, h3 {
     margin-top: 50px;
 }
 
+/* Header Styling */
 header {
-    background-color: #1a1a2e;
+    background-color: #1a1a2e; /* Match the color to original header */
     color: #fff;
     padding: 20px 0;
     border-bottom: 3px solid #e94560;
@@ -46,111 +48,75 @@ nav a:hover {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-#playlist-builder {
+/* Playlist Section */
+#playlist {
+    background-color: #ffffff;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
-    margin-top: 20px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
-#playlist-builder h2 {
-    text-align: center;
-    color: #e94560;
-    margin-bottom: 20px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+/* Form and Button Styling */
+form {
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-.song-item {
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.heart {
-    cursor: pointer;
-    font-size: 1.5rem;
-    color: #e94560;
-    transition: color 0.3s ease;
-}
-
-.heart.liked {
-    color: #c93450;
-}
-
-.add-playlist-btn {
-    background-color: #e94560;
-    color: white;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.add-playlist-btn:hover {
-    background-color: #c93450;
-}
-
-#playlist-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 300px;
-}
-
-.close {
-    font-size: 30px;
-    cursor: pointer;
-    color: #c93450;
-}
-
-#save-playlist {
+button, .btn {
     background-color: #e94560;
     color: white;
     border: none;
     padding: 12px 20px;
     font-size: 1.1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s ease-in-out;
     width: 100%;
-    margin-top: 20px;
+    border-radius: 5px;
 }
 
-#save-playlist:hover {
-    background-color: #c93450;
+button:hover, .btn:hover {
+    background-color: #d13c53;
 }
 
-#search-button {
-    background-color: #e94560;  
+/* Responsive styling */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+        padding: 8px 10px;
+    }
+}
+
+/* Playlist Item Styles */
+#playlistSongs .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#playlistSongs .col {
+    flex: 1;
+    min-width: 250px;
+    margin: 10px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#playlistSongs .col button {
+    background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s ease-in-out;
-    margin-top: 20px;
+    padding: 8px 15px;
+    margin-top: 10px;
 }
 
-#search-button:hover {
-    background-color: #c93450;  
+#playlistSongs .col button:hover {
+    background-color: #0056b3;
 }

@@ -1,90 +1,134 @@
-// Sample playlists data
-const playlists = [
-    { id: 1, name: "Playlist 1" },
-    { id: 2, name: "Playlist 2" },
-    { id: 3, name: "Playlist 3" }
-];
+// Load songs from local storage and display them in the library section
+const loadSongs = () => {
+    const songList = JSON.parse(localStorage.getItem("songs")) || [];
+    const songContainer = document.getElementById("songList");
+    songContainer.innerHTML = "";
 
-// Function to render song results
-function renderSongs() {
-    const resultsContainer = document.getElementById("song-results");
-    resultsContainer.innerHTML = "";
-
-    // Get the uploaded songs from localStorage (retrieve or empty array if none)
-    const uploadedSongs = JSON.parse(localStorage.getItem("uploadedSongs")) || [];
-
-    // Render the uploaded songs
-    uploadedSongs.forEach(song => {
+    songList.forEach((song, index) => {
         const songItem = document.createElement("div");
-        songItem.classList.add("song-item");
+        songItem.classList.add("col-md-4", "song-item");
         songItem.innerHTML = `
-            <h5>${song.title} - ${song.artist}</h5>
-            <i class="heart" data-id="${song.id}">&#9829;</i>
-            <button class="add-playlist-btn" data-id="${song.id}">Add to Playlist</button>
+            <h3>${song.title}</h3>
+            <p>Artist: ${song.artist}</p>
+            <p>Genre: ${song.genre}</p>
+            <button onclick="playSong('${song.file}')">Play</button>
+            <button class="btn btn-sm btn-success" onclick="addToPlaylist(${index})">Add to Playlist</button>
+            <button class="btn btn-sm btn-danger" onclick="toggleLike(this, ${index})">❤️</button>
         `;
-        resultsContainer.appendChild(songItem);
+        songContainer.appendChild(songItem);
     });
+};
 
-    // Event listeners for heart buttons
-    const hearts = document.querySelectorAll(".heart");
-    hearts.forEach(heart => {
-        heart.addEventListener("click", toggleLike);
-    });
+// Create a new playlist
+const createPlaylist = () => {
+    const playlistName = document.getElementById("newPlaylistName").value.trim();
+    if (!playlistName) return alert("Please enter a playlist name!");
 
-    // Event listeners for Add to Playlist buttons
-    const addPlaylistBtns = document.querySelectorAll(".add-playlist-btn");
-    addPlaylistBtns.forEach(button => {
-        button.addEventListener("click", openPlaylistModal);
-    });
-}
+    const playlists = JSON.parse(localStorage.getItem("playlists")) || {};
+    if (playlists[playlistName]) return alert("Playlist already exists!");
 
-// Function to toggle the like status
-function toggleLike(event) {
-    const heart = event.target;
-    heart.classList.toggle("liked");
-}
+    playlists[playlistName] = [];
+    localStorage.setItem("playlists", JSON.stringify(playlists));
+    loadPlaylists();
+    document.getElementById("newPlaylistName").value = "";
+};
 
-// Function to open the playlist modal and add playlists dynamically
-function openPlaylistModal(event) {
-    const songId = event.target.dataset.id;
-    const modal = document.getElementById("playlist-modal");
-    const playlistSelector = document.getElementById("playlist-selector");
+// Load playlists from local storage and display in the playlist selector
+const loadPlaylists = () => {
+    const playlists = JSON.parse(localStorage.getItem("playlists")) || {};
+    const playlistSelector = document.getElementById("playlistSelector");
+    playlistSelector.innerHTML = `<option value="" disabled selected>Select a Playlist</option>`;
 
-    // Clear previous options and add playlists
-    playlistSelector.innerHTML = "";
-    playlists.forEach(playlist => {
+    Object.keys(playlists).forEach(playlist => {
         const option = document.createElement("option");
-        option.value = playlist.id;
-        option.textContent = playlist.name;
+        option.value = playlist;
+        option.textContent = playlist;
         playlistSelector.appendChild(option);
     });
 
-    // Show the modal
-    modal.style.display = "flex";
+    // Load songs from the selected playlist
+    playlistSelector.addEventListener('change', () => {
+        const selectedPlaylist = playlistSelector.value;
+        if (selectedPlaylist) {
+            const playlist = playlists[selectedPlaylist];
+            const playlistSongs = document.getElementById("playlistSongs");
+            playlistSongs.innerHTML = "";  // Clear previous songs
 
-    // Handle adding song to playlist
-    const addButton = document.getElementById("add-to-playlist");
-    addButton.onclick = () => addToPlaylist(songId, playlistSelector.value);
-}
+            playlist.forEach(song => {
+                const songItem = document.createElement("div");
+                songItem.classList.add("col-md-4", "song-item");
+                songItem.innerHTML = `
+                    <h3>${song.title}</h3>
+                    <p>Artist: ${song.artist}</p>
+                    <p>Genre: ${song.genre}</p>
+                    <button onclick="playSong('${song.file}')">Play</button>
+                `;
+                playlistSongs.appendChild(songItem);
+            });
+        }
+    });
+};
 
-// Function to add the song to a selected playlist
-function addToPlaylist(songId, playlistId) {
-    const song = JSON.parse(localStorage.getItem("uploadedSongs")).find(s => s.id == songId);
-    const playlist = playlists.find(p => p.id == playlistId);
-    alert(`Added "${song.title}" to "${playlist.name}" playlist!`);
+// Add a song to a selected playlist
+const addToPlaylist = (songIndex) => {
+    const playlistName = document.getElementById("playlistSelector").value;
+    if (!playlistName) return alert("Please select a playlist!");
 
-    // Hide the modal after adding the song
-    const modal = document.getElementById("playlist-modal");
-    modal.style.display = "none";
-}
+    const playlists = JSON.parse(localStorage.getItem("playlists")) || {};
+    const songs = JSON.parse(localStorage.getItem("songs")) || [];
+    playlists[playlistName].push(songs[songIndex]);
+    localStorage.setItem("playlists", JSON.stringify(playlists));
+    alert("Song added to playlist!");
+};
 
-// Close the modal when the close button is clicked
-document.getElementById("close-modal").addEventListener("click", () => {
-    document.getElementById("playlist-modal").style.display = "none";
-});
+// Toggle the like button for a song
+const toggleLike = (btn, songIndex) => {
+    const songs = JSON.parse(localStorage.getItem("songs")) || [];
+    songs[songIndex].liked = !songs[songIndex].liked;
+    btn.textContent = songs[songIndex].liked ? "❤️ Liked" : "❤️";
+    localStorage.setItem("songs", JSON.stringify(songs));
+};
 
-// Handle search functionality
-document.getElementById("search-button").addEventListener("click", renderSongs);
+// Play a song from the playlist or library
+const playSong = (songFile) => {
+    const audioPlayer = document.getElementById("audioPlayer");
+    const audioElement = document.getElementById("audioElement");
+    audioPlayer.style.display = "block";
+    audioElement.src = songFile;
+    audioElement.play();
+};
 
-// Initialize song results on page load
-window.onload = renderSongs;
+// Filter songs based on the search input (library search functionality)
+const searchSongs = () => {
+    const query = document.getElementById("searchInput").value.toLowerCase();
+    const songList = JSON.parse(localStorage.getItem("songs")) || [];
+    const filteredSongs = songList.filter(song =>
+        song.title.toLowerCase().includes(query) ||
+        song.artist.toLowerCase().includes(query) ||
+        song.genre.toLowerCase().includes(query)
+    );
+    const songContainer = document.getElementById("songList");
+    songContainer.innerHTML = "";
+    filteredSongs.forEach((song, index) => {
+        const songItem = document.createElement("div");
+        songItem.classList.add("col-md-4", "song-item");
+        songItem.innerHTML = `
+            <h3>${song.title}</h3>
+            <p>Artist: ${song.artist}</p>
+            <p>Genre: ${song.genre}</p>
+            <button onclick="playSong('${song.file}')">Play</button>
+            <button class="btn btn-sm btn-success" onclick="addToPlaylist(${index})">Add to Playlist</button>
+            <button class="btn btn-sm btn-danger" onclick="toggleLike(this, ${index})">❤️</button>
+        `;
+        songContainer.appendChild(songItem);
+    });
+};
+
+// Event Listeners for the buttons
+document.getElementById("createPlaylistBtn").addEventListener("click", createPlaylist);
+document.getElementById("searchInput").addEventListener("input", searchSongs);
+
+// Initial load of songs and playlists
+loadSongs();
+loadPlaylists();
+

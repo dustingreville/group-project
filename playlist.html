@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual Beats - Playlist Builder</title>
-    <link rel="stylesheet" href="css/playlist.css"> <!-- Link to playlist CSS -->
+    <title>Virtual Beats - Playlist</title>
+    <link rel="stylesheet" href="css/playlist.css"> <!-- Correct path for playlist.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
 </head>
-
 <body>
+
     <!-- Header Section -->
     <header class="bg-dark text-white p-3">
         <div class="container">
@@ -27,45 +26,42 @@
         </div>
     </header>
 
-    <!-- Playlist Builder Section -->
-    <section id="playlist-builder" class="container mt-5">
-        <h2>Your Playlist</h2>
+    <!-- Playlist Section -->
+    <section id="playlist" class="container mt-5">
+        <h2 class="text-center mb-4">Create and Manage Your Playlist</h2>
 
-        <!-- Song Search and Playlist Management -->
-        <section id="search-songs">
-            <h3>Search for Songs</h3>
-            <div id="search-bar" class="mb-3">
-                <input type="text" id="search-input" placeholder="Search for songs..." class="form-control w-50">
-                <button id="search-button" class="btn btn-primary mt-2">Search</button>
-            </div>
-
-            <div id="song-results" class="d-flex flex-wrap gap-3">
-                <!-- Song results will be dynamically populated here -->
-            </div>
-        </section>
-
-        <!-- Playlist Modal -->
-        <div id="playlist-modal" class="modal">
-            <div class="modal-content">
-                <span id="close-modal" class="close">&times;</span>
-                <h3>Select Playlist</h3>
-                <select id="playlist-selector" class="form-select">
-                    <!-- Playlist options will be populated here -->
-                </select>
-                <button id="add-to-playlist" class="btn btn-success mt-3">Add to Playlist</button>
-            </div>
+        <!-- Playlist Creation Form -->
+        <div class="mb-3">
+            <label for="newPlaylistName" class="form-label">New Playlist Name:</label>
+            <input type="text" id="newPlaylistName" class="form-control" placeholder="Enter Playlist Name">
+            <button id="createPlaylistBtn" class="btn btn-danger w-100 mt-3">Create Playlist</button>
         </div>
 
-        <div id="playlist" class="mb-4">
-            <!-- Playlist save -->
+        <!-- Playlist Selection -->
+        <h3>Select a Playlist</h3>
+        <select id="playlistSelector" class="form-select mb-3">
+            <option value="" disabled selected>Select a Playlist</option>
+        </select>
+
+        <!-- Playlist Songs -->
+        <h3>Playlist Songs</h3>
+        <div id="playlistSongs" class="row"></div>
+
+        <!-- Search Bar Section -->
+        <div class="mb-3">
+            <label for="searchInput" class="form-label">Search Songs:</label>
+            <input type="text" id="searchInput" class="form-control" placeholder="Search by title, artist, or genre" oninput="searchSongs()">
         </div>
 
-        <button id="save-playlist" class="btn btn-primary w-100">Save Playlist</button>
+        <!-- Audio Player -->
+        <div id="audioPlayer" class="mt-4" style="display:none;">
+            <audio controls id="audioElement" class="w-100">
+                <source id="audioSource" type="audio/mp3">
+            </audio>
+        </div>
     </section>
 
-    <!-- JavaScript -->
-    <script src="playlist.js"></script> <!-- Link to playlist.js -->
+    <script src="playlist.js"></script> <!-- Link to the playlist.js script -->
 
 </body>
-
 </html>
