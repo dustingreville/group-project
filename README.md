@@ -27,4 +27,6 @@ The Registration Page allows new users to sign up for an account on the platform
 The rest like the homepage, feed etc are pretty unfinished or just basic. The homepage is just a hello welcome. Since its not the group making the entire thing together a lot isnt as finsihed as it should be or could be.
 
 
+# Branches
 
+All branches were created by Kuldip Sahota, each has their own html and js inside. Css is also in each of the sections Branches inside the CSS folder. So Upload for instance, will feature upload.html, upload.js and css/upload.css. The branches are kept orgainized, I (Kuldip Sahota) Always upload first to the feature branch then merge to the main branch. 
