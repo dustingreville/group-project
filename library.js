@@ -13,6 +13,7 @@ const loadSongs = () => {
             <p>Genre: ${song.genre}</p>
             <p>Duration: ${song.duration}</p>
             <button onclick="playSong('${song.file}')">Play</button>
+            <button onclick="addToPlaylist('${song.title}', '${song.artist}', '${song.genre}', '${song.duration}', '${song.file}')">Add to Playlist</button>
         `;
         songContainer.appendChild(songItem);
     });
@@ -40,12 +41,13 @@ const searchSongs = () => {
             <p>Genre: ${song.genre}</p>
             <p>Duration: ${song.duration}</p>
             <button onclick="playSong('${song.file}')">Play</button>
+            <button onclick="addToPlaylist('${song.title}', '${song.artist}', '${song.genre}', '${song.duration}', '${song.file}')">Add to Playlist</button>
         `;
         songContainer.appendChild(songItem);
     });
 };
 
-// Play the selected song (audio player functionality.)
+// Play the selected song (audio player functionality)
 const playSong = (songFile) => {
     const audio = new Audio(songFile);
     audio.play();
@@ -56,6 +58,21 @@ const playSong = (songFile) => {
     const audioElement = document.getElementById("audioElement");
     audioElement.src = songFile;  // Set the source of the audio player to the selected song
     audioElement.play();
+};
+
+// Add the selected song to the playlist
+const addToPlaylist = (title, artist, genre, duration, file) => {
+    const playlist = JSON.parse(localStorage.getItem("playlist")) || [];
+    const newSong = { title, artist, genre, duration, file };
+    
+    // Add song to playlist if it's not already there
+    if (!playlist.some(song => song.title === title && song.artist === artist)) {
+        playlist.push(newSong);
+        localStorage.setItem("playlist", JSON.stringify(playlist));
+        alert('Song added to Playlist!');
+    } else {
+        alert('Song already in Playlist.');
+    }
 };
 
 // Event listener for search input
