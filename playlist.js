@@ -1,4 +1,3 @@
-// Load songs from local storage and display them in the library section
 const loadSongs = () => {
     const songList = JSON.parse(localStorage.getItem("songs")) || [];
     const songContainer = document.getElementById("songList");
@@ -19,7 +18,6 @@ const loadSongs = () => {
     });
 };
 
-// Create a new playlist
 const createPlaylist = () => {
     const playlistName = document.getElementById("newPlaylistName").value.trim();
     if (!playlistName) return alert("Please enter a playlist name!");
@@ -33,7 +31,6 @@ const createPlaylist = () => {
     document.getElementById("newPlaylistName").value = "";
 };
 
-// Load playlists from local storage and display in the playlist selector
 const loadPlaylists = () => {
     const playlists = JSON.parse(localStorage.getItem("playlists")) || {};
     const playlistSelector = document.getElementById("playlistSelector");
@@ -45,15 +42,16 @@ const loadPlaylists = () => {
         option.textContent = playlist;
         playlistSelector.appendChild(option);
     });
+    
+    const playlistSongs = document.getElementById("playlistSongs");
+    playlistSongs.innerHTML = "";  // Clear current songs
 
-    // Load songs from the selected playlist
+    // Load songs from selected playlist!
     playlistSelector.addEventListener('change', () => {
         const selectedPlaylist = playlistSelector.value;
         if (selectedPlaylist) {
             const playlist = playlists[selectedPlaylist];
-            const playlistSongs = document.getElementById("playlistSongs");
             playlistSongs.innerHTML = "";  // Clear previous songs
-
             playlist.forEach(song => {
                 const songItem = document.createElement("div");
                 songItem.classList.add("col-md-4", "song-item");
@@ -69,31 +67,17 @@ const loadPlaylists = () => {
     });
 };
 
-// Add a song to a selected playlist
 const addToPlaylist = (songIndex) => {
     const playlistName = document.getElementById("playlistSelector").value;
     if (!playlistName) return alert("Please select a playlist!");
 
     const playlists = JSON.parse(localStorage.getItem("playlists")) || {};
     const songs = JSON.parse(localStorage.getItem("songs")) || [];
-
-    const songToAdd = songs[songIndex]; // Get song details to add
-
-    if (!playlists[playlistName]) {
-        playlists[playlistName] = [];
-    }
-
-    // Ensure song isn't duplicated
-    if (!playlists[playlistName].some(song => song.title === songToAdd.title)) {
-        playlists[playlistName].push(songToAdd);
-        localStorage.setItem("playlists", JSON.stringify(playlists));
-        alert("Song added to playlist!");
-    } else {
-        alert("Song is already in this playlist.");
-    }
+    playlists[playlistName].push(songs[songIndex]);
+    localStorage.setItem("playlists", JSON.stringify(playlists));
+    alert("Song added to playlist!");
 };
 
-// Toggle the like button for a song
 const toggleLike = (btn, songIndex) => {
     const songs = JSON.parse(localStorage.getItem("songs")) || [];
     songs[songIndex].liked = !songs[songIndex].liked;
@@ -101,7 +85,6 @@ const toggleLike = (btn, songIndex) => {
     localStorage.setItem("songs", JSON.stringify(songs));
 };
 
-// Play a song from the playlist or library
 const playSong = (songFile) => {
     const audioPlayer = document.getElementById("audioPlayer");
     const audioElement = document.getElementById("audioElement");
@@ -110,7 +93,6 @@ const playSong = (songFile) => {
     audioElement.play();
 };
 
-// Filter songs based on the search input (library search functionality)
 const searchSongs = () => {
     const query = document.getElementById("searchInput").value.toLowerCase();
     const songList = JSON.parse(localStorage.getItem("songs")) || [];
@@ -136,11 +118,9 @@ const searchSongs = () => {
     });
 };
 
-// Event Listeners for the buttons
-document.getElementById("createPlaylistBtn").addEventListener("click", createPlaylist);
+document.getElementById("createPlaylist").addEventListener("click", createPlaylist);
 document.getElementById("searchInput").addEventListener("input", searchSongs);
 
-// Initial load of songs and playlists
 loadSongs();
 loadPlaylists();
 
