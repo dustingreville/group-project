@@ -32,11 +32,17 @@ The rest like the homepage, feed etc are pretty unfinished or just basic. The ho
 All branches were created by Kuldip Sahota, each has their own html and js inside. Css is also in each of the sections Branches inside the CSS folder. So Upload for instance, will feature upload.html, upload.js and css/upload.css. The branches are kept orgainized, I (Kuldip Sahota) Always upload first to the feature branch then merge to the main branch. 
 
 [homepage-feed](https://github.com/dustingreville/group-project/tree/feature/homepage-feed)
+
 [searchable-library](https://github.com/dustingreville/group-project/tree/feature/searchable-library)
+
 [playlist-builder](https://github.com/dustingreville/group-project/tree/feature/playlist-builder)
+
 [feedjs](https://github.com/dustingreville/group-project/tree/feature/feedjs)
+
 [registration-form](https://github.com/dustingreville/group-project/tree/feature/registration-form)
+
 [upload](https://github.com/dustingreville/group-project/tree/feature/upload)
+
 [header-section](https://github.com/dustingreville/group-project/tree/feature/header-section)
 [feed-styling](https://github.com/dustingreville/group-project/tree/feature/feed-styling)
 [css-styling](https://github.com/dustingreville/group-project/tree/feature/css-styling)
