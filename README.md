@@ -31,7 +31,11 @@ The rest like the homepage, feed etc are pretty unfinished or just basic. The ho
 
 Our team consists of 2 people. Dustin Greville was in charge of Github and JavaScript and Kuldip Sahota was in charge of HTML and CSS. Although we each had our own roles, we worked on a bit of everything overall. Kuldip's main focus was creating the HTML and CSS for every page while Dustin was adding functionality through Javascript. However, Kuldip also assisted with the JavaScript for the Upload and Library Features and Dustin also contributed to some of the HTML.
 
+# YouTube Video:
 
+Check out our YouTube video highlighting the key features of our website!
+
+[![Watch this video](https://img.youtube.com/vi/IlmPS7Zc1J4/0.jpg)](https://youtu.be/IlmPS7Zc1J4)
 
 # Branches
 
