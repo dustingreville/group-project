@@ -1,6 +1,6 @@
 # This is Virtual Beats!
 
-Here you can upload and play copyright free music. Able to browse the library of various tracks you upload and more!
+Here you can upload and play copyright free music. Able to browse the library of various tracks you upload and more! Our objective is to give users the ability to share and download music without the fear of copyright infringement. Below you can find a breakdown of all of the features, a video highlighting those features, as well as links to all of our branches. 
 
 **Authors:** Kuldip Sahota & Dustin Greville
 
@@ -27,6 +27,12 @@ The Registration Page allows new users to sign up for an account on the platform
 The rest like the homepage, feed etc are pretty unfinished or just basic. The homepage is just a hello welcome. Since its not the group making the entire thing together a lot isnt as finsihed as it should be or could be.
 
 
+# Team Members and Roles:
+
+Our team consists of 2 people. Dustin Greville was in charge of Github and JavaScript and Kuldip Sahota was in charge of HTML and CSS. Although we each had our own roles, we worked on a bit of everything overall. Kuldip's main focus was creating the HTML and CSS for every page while Dustin was adding functionality through Javascript. However, Kuldip also assisted with the JavaScript for the Upload and Library Features and Dustin also contributed to some of the HTML.
+
+
+
 # Branches
 
 All branches were created by Kuldip Sahota, each has their own html and js inside. Css is also in each of the sections Branches inside the CSS folder. So Upload for instance, will feature upload.html, upload.js and css/upload.css. The branches are kept orgainized, I (Kuldip Sahota) Always upload first to the feature branch then merge to the main branch. 
@@ -44,6 +50,9 @@ All branches were created by Kuldip Sahota, each has their own html and js insid
 [upload](https://github.com/dustingreville/group-project/tree/feature/upload)
 
 [header-section](https://github.com/dustingreville/group-project/tree/feature/header-section)
+
 [feed-styling](https://github.com/dustingreville/group-project/tree/feature/feed-styling)
+
 [css-styling](https://github.com/dustingreville/group-project/tree/feature/css-styling)
+
 [personal-dashboard](https://github.com/dustingreville/group-project/tree/feature/personal-dashboard)
